@@ -27,22 +27,19 @@ public class ConsoleExercises {
         System.out.printf("The sentence you entered is: %s%n", mySentence);
 
         System.out.print("Enter length: ");
-        String userLength = scanner.nextLine();
+        double userLength = scanner.nextDouble();
 
         System.out.print("Enter width: ");
-        String userWidth = scanner.nextLine();
+        double userWidth = scanner.nextDouble();
 
         System.out.print("Enter height: ");
-        String userHeight = scanner.nextLine();
+        double userHeight = scanner.nextDouble();
 
-        System.out.printf("Length: %s%nWidth: %s%n", userLength, userWidth);
+        System.out.format("Length: %.2f%nWidth: %.2f%n", userLength, userWidth);
 
-        double userLengthDouble = Double.parseDouble(userLength);
-        double userWidthDouble = Double.parseDouble(userWidth);
-        double userHeightDouble = Double.parseDouble(userHeight);
-        double userArea = userLengthDouble * userWidthDouble;
-        double userPerimeter = (2 * userLengthDouble) + (2 * userWidthDouble);
-        double userVolume = userArea * userHeightDouble;
+        double userArea = userLength * userWidth;
+        double userPerimeter = (2 * userLength) + (2 * userWidth);
+        double userVolume = userArea * userHeight;
 
         System.out.format("The area with the parameters you entered is: %.2f%n", userArea);
         System.out.format("The perimeter with the parameters you entered is: %.2f%n", userPerimeter);
