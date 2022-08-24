@@ -45,6 +45,5 @@ public class ConsoleExercises {
         System.out.format("The perimeter with the parameters you entered is: %.2f%n", userPerimeter);
         System.out.format("The volume with the parameters you entered is: %.2f%n", userVolume);
 
-
     }
 }
