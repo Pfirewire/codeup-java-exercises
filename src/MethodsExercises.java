@@ -21,7 +21,17 @@ public class MethodsExercises {
         System.out.print("Enter a maximum: ");
         int userMax = scanner.nextInt();
         int userNum = getInteger(userMin, userMax);
-        System.out.printf("Your number between %s and %s is %s.", userMin, userMax, userNum);
+        System.out.printf("Your number between %s and %s is %s.%n", userMin, userMax, userNum);
+
+        String userContinue;
+        do{
+            System.out.print("Enter a number to find its factorial. ");
+            userNum = getInteger(1, 12);
+            int factorialTotal = factorial(userNum);
+            System.out.printf("The factorial of %s is %s.%n", userNum, factorialTotal);
+            System.out.print("Do you want to continue? (Y|N): ");
+            userContinue = scanner.next();
+        } while(userContinue.equals("Y") || userContinue.equals("y"));
     }
 
     public  static int addition(int num1, int num2) {
@@ -56,10 +66,18 @@ public class MethodsExercises {
         scanner.useDelimiter("\n");
         System.out.printf("Please enter a number between %s and %s: ", min, max);
         int userInput = scanner.nextInt();
-        if(userInput < max && userInput > min) {
+        if(userInput <= max && userInput >= min) {
             return userInput;
         } else {
             return getInteger(min, max);
+        }
+    }
+
+    public static int factorial(int num) {
+        if (num > 1) {
+            return num * factorial(num - 1);
+        } else {
+            return 1;
         }
     }
 }
