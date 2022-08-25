@@ -29,7 +29,15 @@ public class MethodsExercises {
             userNum = getInteger(1, 12);
             int factorialTotal = factorial(userNum);
             System.out.printf("The factorial of %s is %s.%n", userNum, factorialTotal);
-            System.out.print("Do you want to continue? (Y|N): ");
+            System.out.print("Do you want to find another factorial? (Y|N): ");
+            userContinue = scanner.next();
+        } while(userContinue.equals("Y") || userContinue.equals("y"));
+
+        do{
+            System.out.print("Enter a number to represent how many sides the two dice each have: ");
+            int numberOfSides = scanner.nextInt();
+            rollDice(numberOfSides);
+            System.out.print("Do you wish to roll again? (Y|N): ");
             userContinue = scanner.next();
         } while(userContinue.equals("Y") || userContinue.equals("y"));
     }
@@ -79,5 +87,13 @@ public class MethodsExercises {
         } else {
             return 1;
         }
+    }
+
+    public static void rollDice(int n) {
+        int firstDiceRoll;
+        int secondDiceRoll;
+        firstDiceRoll = (int) (Math.random() * n) + 1 ;
+        secondDiceRoll = (int) (Math.random() * n) + 1 ;
+        System.out.printf("Your dice rolls are %s and %s.%n", firstDiceRoll, secondDiceRoll);
     }
 }
