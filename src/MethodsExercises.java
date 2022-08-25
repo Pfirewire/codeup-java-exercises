@@ -26,11 +26,14 @@ public class MethodsExercises {
     }
 
     public static int multiplication(int num1, int num2) {
-        int total = 0;
-        for(int i = 0; i < num2; i++){
-            total += num1;
+        int total = num1;
+//        for(int i = 0; i < num2; i++){
+//            total += num1;
+//        }
+        if(num2 == 0){
+            return 0;
         }
-        return total;
+        return total + multiplication(num1, num2 - 1);
     }
 
     public static float division(int num1, int num2) {
