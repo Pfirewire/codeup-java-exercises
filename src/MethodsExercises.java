@@ -15,6 +15,13 @@ public class MethodsExercises {
         System.out.printf("%s * %s is: %s%n", userNum1, userNum2, multiplication(userNum1, userNum2));
         System.out.printf("%s / %s is: %s%n", userNum1, userNum2, division(userNum1, userNum2));
         System.out.printf("%s %% %s is: %s%n", userNum1, userNum2, modulus(userNum1, userNum2));
+
+        System.out.print("Enter a minimum: ");
+        int userMin = scanner.nextInt();
+        System.out.print("Enter a maximum: ");
+        int userMax = scanner.nextInt();
+        int userNum = getInteger(userMin, userMax);
+        System.out.printf("Your number between %s and %s is %s.", userMin, userMax, userNum);
     }
 
     public  static int addition(int num1, int num2) {
@@ -42,5 +49,17 @@ public class MethodsExercises {
 
     public static int modulus(int num1, int num2) {
         return num1 % num2;
+    }
+
+    public static int getInteger(int min, int max) {
+        Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n");
+        System.out.printf("Please enter a number between %s and %s: ", min, max);
+        int userInput = scanner.nextInt();
+        if(userInput < max && userInput > min) {
+            return userInput;
+        } else {
+            return getInteger(min, max);
+        }
     }
 }
