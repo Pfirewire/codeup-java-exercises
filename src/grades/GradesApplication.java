@@ -32,7 +32,23 @@ public class GradesApplication {
 
         boolean userContinue;
         String userInput;
+        Student userStudent;
+        System.out.println("Welcome to my Students class!\n\n" +
+                "Here are all the GitHub names of my Students:\n");
+        students.forEach((gitHubName, student) -> {
+            System.out.printf("|%s| ", gitHubName);
+        });
+        System.out.println();
         do{
+            userInput = inpt.getString("Which student would you like to see information on? ");
+            if (!students.containsKey(userInput)) {
+                System.out.println("\nI couldn't find any students with that GitHub name.\n");
+            } else {
+                userStudent = students.get(userInput);
+                System.out.printf("%nStudent Name: %s%n" +
+                        "Student GitHub: %s%n" +
+                        "Student Grade Average: %s%n%n", userStudent.getName(), userInput, userStudent.getGradeAverage());
+            }
 
             userContinue = inpt.yesNo("Do you wish to continue? ");
         } while(userContinue);
