@@ -12,18 +12,38 @@ public class GradesApplication {
         failingStudent.addGrade(12);
         failingStudent.addGrade(4);
         failingStudent.addGrade(38);
+        failingStudent.recordAttendance("2020-10-07", "A");
+        failingStudent.recordAttendance("2020-10-08", "P");
+        failingStudent.recordAttendance("2020-10-09", "A");
+        failingStudent.recordAttendance("2020-10-10", "A");
+        failingStudent.recordAttendance("2020-10-11", "P");
         Student averageStudent = new Student("Harold");
         averageStudent.addGrade(70);
         averageStudent.addGrade(65);
         averageStudent.addGrade(82);
+        averageStudent.recordAttendance("2020-10-07", "P");
+        averageStudent.recordAttendance("2020-10-08", "P");
+        averageStudent.recordAttendance("2020-10-09", "P");
+        averageStudent.recordAttendance("2020-10-10", "P");
+        averageStudent.recordAttendance("2020-10-11", "P");
         Student straightAStudent = new Student("Eve");
         straightAStudent.addGrade(99);
         straightAStudent.addGrade(100);
         straightAStudent.addGrade(100);
+        straightAStudent.recordAttendance("2020-10-07", "P");
+        straightAStudent.recordAttendance("2020-10-08", "P");
+        straightAStudent.recordAttendance("2020-10-09", "P");
+        straightAStudent.recordAttendance("2020-10-10", "P");
+        straightAStudent.recordAttendance("2020-10-11", "P");
         Student allOverStudent = new Student("Carol");
         allOverStudent.addGrade(0);
         allOverStudent.addGrade(100);
         allOverStudent.addGrade(92);
+        allOverStudent.recordAttendance("2020-10-07", "A");
+        allOverStudent.recordAttendance("2020-10-08", "P");
+        allOverStudent.recordAttendance("2020-10-09", "P");
+        allOverStudent.recordAttendance("2020-10-10", "A");
+        allOverStudent.recordAttendance("2020-10-11", "A");
 
         students.put("idontcare", failingStudent);
         students.put("meh24", averageStudent);
@@ -61,9 +81,11 @@ public class GradesApplication {
                         System.out.format("------------------------------------------------%n" +
                                 "Student Name: %s%n" +
                                 "Student GitHub: %s%n" +
-                                "Student Grade Average: %.1f%n" +
+                                "Student Grade Average: %.1f%%%n" +
                                 "Grades: %s%n" +
-                                "------------------------------------------------%n", userStudent.getName(), userInput, userStudent.getGradeAverage(), userStudent.getAllGrades());
+                                "Attendance Percentage: %.1f%%%n" +
+                                "Days Absent: %s%n" +
+                                "------------------------------------------------%n", userStudent.getName(), userInput, userStudent.getGradeAverage(), userStudent.getAllGrades(), userStudent.getAttendancePercentage(), userStudent.getDaysAbsent().toString());
                     }
                     break;
                 case 2:
@@ -76,13 +98,11 @@ public class GradesApplication {
                     break;
                 case 3:
                     double totalClassAverage = 0;
-                    int totalStudents = 0;
                     System.out.println("------------------------------------------------");
                     for (Student student : students.values()){
                         totalClassAverage += student.getGradeAverage();
-                        totalStudents ++;
                     }
-                    System.out.format("Total Class Average: %.1f%n", totalClassAverage / (double) totalStudents);
+                    System.out.format("Total Class Average: %.1f%n", totalClassAverage / (double) students.size());
                     System.out.println("------------------------------------------------");
                     break;
                 case 4:
