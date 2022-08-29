@@ -24,7 +24,16 @@ public class Student {
         for(int grade : grades) {
             total += grade;
         }
-        return total / grades.size();
+        return (double) total / (double) grades.size();
+    }
+
+    // method to return string with every value in grades ArrayList
+    public String getAllGrades() {
+        String allGrades = "";
+        for (int grade : grades) {
+            allGrades = allGrades + grade + " ";
+        }
+        return allGrades;
     }
 
 }

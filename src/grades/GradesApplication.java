@@ -30,27 +30,45 @@ public class GradesApplication {
         students.put("gaming_rainbows", straightAStudent);
         students.put("alibaba7", allOverStudent);
 
-        boolean userContinue;
-        String userInput;
+        boolean userContinue = true;
+        int userInput;
+        String userStringInput;
         Student userStudent;
-        System.out.println("Welcome to my Students class!\n\n" +
-                "Here are all the GitHub names of my Students:\n");
-        students.forEach((gitHubName, student) -> {
-            System.out.printf("|%s| ", gitHubName);
-        });
-        System.out.println();
-        do{
-            userInput = inpt.getString("Which student would you like to see information on? ");
-            if (!students.containsKey(userInput)) {
-                System.out.println("\nI couldn't find any students with that GitHub name.\n");
-            } else {
-                userStudent = students.get(userInput);
-                System.out.printf("%nStudent Name: %s%n" +
-                        "Student GitHub: %s%n" +
-                        "Student Grade Average: %s%n%n", userStudent.getName(), userInput, userStudent.getGradeAverage());
-            }
 
-            userContinue = inpt.yesNo("Do you wish to continue? ");
-        } while(userContinue);
+        System.out.println("Welcome to my Students class!\n\n");
+        do{
+            userInput = inpt.getInt(0, 4, "1. View individual Student\n" +
+                "2. View all grades for all Students\n" +
+                "3. View class grade average\n" +
+                "4. View CSV report for all students\n" +
+                "0. Exit\n\n" +
+                "Enter an option: ");
+            switch (userInput){
+                case 0:
+                    userContinue = false;
+                    break;
+                case 1:
+                    System.out.println("Here are the GitHub usernames of my students: \n");
+                    students.forEach((gitHubName, student) -> {
+                        System.out.printf("|%s| ", gitHubName);
+                    });
+                    System.out.println("\n");
+                    userStringInput = inpt.getString("Which student would you like to see information on? ");
+                    if (!students.containsKey(userStringInput)) {
+                        System.out.println("\nI couldn't find any students with that GitHub name.\n");
+                    } else {
+                        userStudent = students.get(userStringInput);
+                        System.out.format("------------------------%n" +
+                                "Student Name: %s%n" +
+                                "Student GitHub: %s%n" +
+                                "Student Grade Average: %.1f%n" +
+                                "Grades: %s%n" +
+                                "------------------------%n", userStudent.getName(), userInput, userStudent.getGradeAverage(), userStudent.getAllGrades());
+                    }
+                    break;
+                case 2:
+
+            }
+        } while (userContinue);
     }
 }
