@@ -58,16 +58,41 @@ public class GradesApplication {
                         System.out.println("\nI couldn't find any students with that GitHub name.\n");
                     } else {
                         userStudent = students.get(userStringInput);
-                        System.out.format("------------------------%n" +
+                        System.out.format("------------------------------------------------%n" +
                                 "Student Name: %s%n" +
                                 "Student GitHub: %s%n" +
                                 "Student Grade Average: %.1f%n" +
                                 "Grades: %s%n" +
-                                "------------------------%n", userStudent.getName(), userInput, userStudent.getGradeAverage(), userStudent.getAllGrades());
+                                "------------------------------------------------%n", userStudent.getName(), userInput, userStudent.getGradeAverage(), userStudent.getAllGrades());
                     }
                     break;
                 case 2:
-
+                    // hm.forEach((k,v) -> System.out.println("key: "+k+" value:"+v));
+                    System.out.println("------------------------------------------------");
+                    students.forEach((githubName, student) -> {
+                        System.out.printf("%s: %s%n", student.getName(), student.getAllGrades());
+                    });
+                    System.out.println("------------------------------------------------");
+                    break;
+                case 3:
+                    double totalClassAverage = 0;
+                    int totalStudents = 0;
+                    System.out.println("------------------------------------------------");
+                    for (Student student : students.values()){
+                        totalClassAverage += student.getGradeAverage();
+                        totalStudents ++;
+                    }
+                    System.out.format("Total Class Average: %.1f%n", totalClassAverage / (double) totalStudents);
+                    System.out.println("------------------------------------------------");
+                    break;
+                case 4:
+                    System.out.println("------------------------------------------------\n" +
+                            "Name         | GitHub username      | Average");
+                    students.forEach((githubname, student) -> {
+                        System.out.format("%-12s | %-20s | %.1f%n", student.getName(), githubname, student.getGradeAverage());
+                    });
+                    System.out.println("------------------------------------------------");
+                    break;
             }
         } while (userContinue);
     }
