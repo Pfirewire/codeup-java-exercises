@@ -33,6 +33,48 @@ public class GroceriesApplication {
         }
     }
 
+    public static void editList() {
+        System.out.println("Please choose the category of the item you wish to edit:\n");
+        editList(getCategory());
+    }
+
+    public static void editList(String category) {
+        if(!masterList.hasCategory(category)) {
+            System.out.println("Category not found in your list. Please enter a valid category.");
+            editList(getCategory());
+        } else {
+            String item = inpt.getString("Please enter the item you wish to edit: ");
+            editList(category, item);
+        }
+    }
+
+    public static void editList(String category, String item) {
+        if(!masterList.hasItem(category, item)) {
+//            System.out.printf("category is %s, item is %s%n", category, item);
+            System.out.println("Item not found in list.");
+            editList(category);
+        } else {
+            System.out.printf("What would you like to do with %s?%n" +
+                    "1. Remove%n" +
+                    "2. Edit quantity%n" +
+                    "3. Exit%n%n", item);
+            int userOption = inpt.getInt("Enter Option: ");
+            switch (userOption) {
+                case 0:
+                    break;
+                case 1:
+                    masterList.removeItem(category, item);
+                    break;
+                case 2:
+                    int quantity = masterList.getQuantity(category, item);
+                    System.out.printf("%s currently has the quantity set at %s%n", item, quantity);
+                    int newQuantity = inpt.getInt("Please enter the new quantity: ");
+                    masterList.setQuantity(category, item, newQuantity);
+                    break;
+            }
+        }
+    }
+
     public static void addItems() {
         System.out.println ("Please choose the category to add items:\n");
         addItems(getCategory());
@@ -76,6 +118,9 @@ public class GroceriesApplication {
                     break;
                 case 3:
                     masterList.printList(getCategory());
+                    break;
+                case 4:
+                    editList();
                     break;
             }
         } while (willContinue);

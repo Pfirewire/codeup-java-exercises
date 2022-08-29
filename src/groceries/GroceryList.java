@@ -8,6 +8,57 @@ public class GroceryList {
         groceryList = new HashMap<>();
     }
 
+    public boolean hasCategory(String category) {
+        if(!groceryList.containsKey(category)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    public boolean hasItem(String category, String item) {
+        ArrayList<GroceryListEntry> categoryList = groceryList.get(category);
+        boolean contains = false;
+        for(GroceryListEntry entry : categoryList) {
+            if(entry.contains(item)) {
+                contains = true;
+            }
+        }
+        if(!groceryList.containsKey(category) || !contains) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public void removeItem(String category, String item) {
+        for(int i = 0; i < groceryList.get(category).size(); i++) {
+            if(groceryList.get(category).get(i).contains(item)) {
+                groceryList.get(category).remove(i);
+            }
+        }
+    }
+
+    public int getQuantity(String category, String item) {
+        ArrayList<GroceryListEntry> list = groceryList.get(category);
+        for(int i = 0; i < list.size(); i++){
+            if(list.get(i).contains(item)){
+                return list.get(i).getQuantity();
+            }
+        }
+        return -1;
+    }
+
+    public void setQuantity(String category, String item, int quantity) {
+        ArrayList<GroceryListEntry> list = groceryList.get(category);
+        for(int i = 0; i < list.size(); i++) {
+            if(list.get(i).contains(item)){
+                list.get(i).setQuantity(quantity);
+            }
+        }
+//        int index = groceryList.get(category).indexOf(item);
+//        groceryList.get(category).get(index).setQuantity(quantity);
+    }
+
     public void addCategory(String category) {
         ArrayList<GroceryListEntry> emptyArrayList = new ArrayList<>();
         groceryList.putIfAbsent(category, emptyArrayList);
@@ -19,7 +70,7 @@ public class GroceryList {
     }
 
     public void addEntry(String category, GroceryListEntry entry) {
-        if(!groceryList.containsKey(category)) {
+        if(!this.hasCategory(category)) {
             this.addCategory(category);
             this.addEntry(category, entry);
         } else {

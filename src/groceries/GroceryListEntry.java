@@ -12,6 +12,14 @@ public class GroceryListEntry {
     public String getItem() { return item; }
     public int getQuantity() { return quantity; }
 
+    public void setItem(String item){ this.item = item; }
+
+    public void setQuantity(int quantity) { this.quantity = quantity; }
+
+    public boolean contains(String item) {
+        return this.item.equals(item);
+    }
+
 
 //    @Override
 //    public int compareTo(GroceryListEntry compareEntry) {
