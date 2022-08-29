@@ -1,39 +1,30 @@
 package groceries;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class GroceryList {
     HashMap<String, ArrayList<GroceryListEntry>> groceryList;
 
-    public GroceryList() {
-        groceryList = new HashMap<>();
-    }
+    public GroceryList() { groceryList = new HashMap<>(); }
 
-    public boolean hasCategory(String category) {
-        if(!groceryList.containsKey(category)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    public boolean hasItem(String category, String item) {
-        ArrayList<GroceryListEntry> categoryList = groceryList.get(category);
-        boolean contains = false;
-        for(GroceryListEntry entry : categoryList) {
-            if(entry.contains(item)) {
-                contains = true;
+    public boolean hasCategory(String category) { return groceryList.containsKey(category); }
+
+    public boolean hasItem(String item) {
+        for(ArrayList<GroceryListEntry> list : groceryList.values()) {
+            for(GroceryListEntry entry : list) {
+                if(entry.contains(item)) {
+                    return true;
+                }
             }
         }
-        if(!groceryList.containsKey(category) || !contains) {
-            return false;
-        } else {
-            return true;
-        }
+        return false;
     }
 
     public void removeItem(String category, String item) {
-        for(int i = 0; i < groceryList.get(category).size(); i++) {
-            if(groceryList.get(category).get(i).contains(item)) {
-                groceryList.get(category).remove(i);
+        ArrayList<GroceryListEntry> list = groceryList.get(category);
+        for(int i = 0; i < list.size(); i++) {
+            if(list.get(i).contains(item)) {
+                list.remove(i);
             }
         }
     }
@@ -45,7 +36,7 @@ public class GroceryList {
                 return list.get(i).getQuantity();
             }
         }
-        return -1;
+        return 0;
     }
 
     public void setQuantity(String category, String item, int quantity) {
@@ -55,8 +46,6 @@ public class GroceryList {
                 list.get(i).setQuantity(quantity);
             }
         }
-//        int index = groceryList.get(category).indexOf(item);
-//        groceryList.get(category).get(index).setQuantity(quantity);
     }
 
     public void addCategory(String category) {
@@ -78,6 +67,17 @@ public class GroceryList {
             oldList.add(entry);
             groceryList.replace(category, oldList);
         }
+    }
+
+    public String categoryOfItem(String item) {
+        for(Map.Entry<String, ArrayList<GroceryListEntry>> entry : groceryList.entrySet()) {
+            for(int i = 0; i < entry.getValue().size(); i++) {
+                if(entry.getValue().get(i).contains(item)) {
+                    return entry.getKey();
+                }
+            }
+        }
+        return "";
     }
 
     public void printList() {

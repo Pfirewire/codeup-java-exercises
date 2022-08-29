@@ -13,6 +13,7 @@ public class GroceryListTest {
         masterList.printList();
 
         System.out.println(masterList.getQuantity("Produce", "Oranges"));
+        System.out.println(masterList.categoryOfItem("Oranges"));
 //        ArrayList<GroceryListEntry> list = new ArrayList<>();
 //        list.add(new GroceryListEntry("Apples", 2));
 //        list.add(new GroceryListEntry("Oranges", 5));

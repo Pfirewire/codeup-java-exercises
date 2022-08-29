@@ -9,20 +9,23 @@ public class GroceryListEntry {
         this.quantity = quantity;
     }
 
-    public String getItem() { return item; }
-    public int getQuantity() { return quantity; }
+    public String getItem() {
+        return item;
+    }
 
-    public void setItem(String item){ this.item = item; }
+    public int getQuantity() {
+        return quantity;
+    }
 
-    public void setQuantity(int quantity) { this.quantity = quantity; }
+    public void setItem(String item) {
+        this.item = item;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public boolean contains(String item) {
         return this.item.equals(item);
     }
-
-
-//    @Override
-//    public int compareTo(GroceryListEntry compareEntry) {
-//        return 0;
-//    }
 }

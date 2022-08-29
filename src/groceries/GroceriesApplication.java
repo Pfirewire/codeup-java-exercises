@@ -33,27 +33,15 @@ public class GroceriesApplication {
         }
     }
 
-    public static void editList() {
-        System.out.println("Please choose the category of the item you wish to edit:\n");
-        editList(getCategory());
-    }
+    public static void editList() { editList(inpt.getString("Please enter the item: ")); }
 
-    public static void editList(String category) {
-        if(!masterList.hasCategory(category)) {
-            System.out.println("Category not found in your list. Please enter a valid category.");
-            editList(getCategory());
-        } else {
-            String item = inpt.getString("Please enter the item you wish to edit: ");
-            editList(category, item);
-        }
-    }
 
-    public static void editList(String category, String item) {
-        if(!masterList.hasItem(category, item)) {
-//            System.out.printf("category is %s, item is %s%n", category, item);
+    public static void editList(String item) {
+        if(!masterList.hasItem(item)) {
             System.out.println("Item not found in list.");
-            editList(category);
+            editList();
         } else {
+            String category = masterList.categoryOfItem(item);
             System.out.printf("What would you like to do with %s?%n" +
                     "1. Remove%n" +
                     "2. Edit quantity%n" +
@@ -99,7 +87,7 @@ public class GroceriesApplication {
         boolean willContinue = true;
 
         do {
-            System.out.println("" +
+            System.out.println("\n" +
                     "1. Add Items to List\n" +
                     "2. Show Full List\n" +
                     "3. Show List by Category\n" +
