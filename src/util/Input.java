@@ -45,7 +45,12 @@ public class Input {
     }
 
     public int getInt() {
-        return scanner.nextInt();
+        try{
+            return Integer.valueOf(getString());
+        } catch (NumberFormatException e) {
+            System.out.println("Try again");
+            return getInt();
+        }
     }
 
     public int getInt(String prompt) {
@@ -71,7 +76,12 @@ public class Input {
     }
 
     public double getDouble() {
-        return scanner.nextDouble();
+        try{
+            return Double.valueOf(getString());
+        } catch (NumberFormatException e) {
+            System.out.println("Try again");
+            return getDouble();
+        }
     }
 
     public double getDouble(String prompt) {
