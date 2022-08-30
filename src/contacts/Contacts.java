@@ -33,7 +33,7 @@ public class Contacts {
         contacts.add(contact);
     }
 
-    public void addContact(String name, String phoneNumber, String email) {
+    public void addContact(String name, int phoneNumber, String email) {
         this.addContact(new Contact(name, phoneNumber, email));
     }
 

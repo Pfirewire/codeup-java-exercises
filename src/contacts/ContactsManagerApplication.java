@@ -43,8 +43,6 @@ public class ContactsManagerApplication {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-//        contacts.addContact("Bob Bobson", "341-555-4345", "bob.bobby@email.com");
-//        contacts.addContact("Judy Erin", "123-555-7537", "juuuuuuudeeeeee@email.com");
     }
 
     public static void saveContactList() {
@@ -124,13 +122,13 @@ public class ContactsManagerApplication {
 
     public static Contact getUserContact() {
         String name = inpt.getString("Enter name: ");
-        String phoneNumber = inpt.getString("Enter phone number (xxx-xxx-xxxx format): ");
+        int phoneNumber = inpt.getInt("Enter phone number (xxxxxxx or xxxxxxxxxx format): ");
         String email = inpt.getString("Enter email: ");
         return new Contact(name, phoneNumber, email);
     }
 
     public static Contact getUserContact(String name) {
-        String phoneNumber = inpt.getString("Enter phone number (xxx-xxx-xxxx format): ");
+        int phoneNumber = inpt.getInt("Enter phone number (xxxxxxx or xxxxxxxxxx format): ");
         String email = inpt.getString("Enter email: ");
         return new Contact(name, phoneNumber, email);
     }
