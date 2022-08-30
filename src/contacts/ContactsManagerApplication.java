@@ -1,18 +1,59 @@
 package contacts;
 import util.Input;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 public class ContactsManagerApplication {
     private static final Input inpt = new Input();
     private static Contacts contacts;
+    private static String directory;
+    private static String filename;
+    private static Path dataDirectory;
+    private static Path dataFile;
+
+    public static void createDirectoryAndFile() {
+        directory = "data";
+        filename = "contacts.txt";
+
+        try {
+            dataDirectory = Paths.get(directory);
+            dataFile = Paths.get(directory, filename);
+
+            if (Files.notExists(dataDirectory)) {
+                Files.createDirectories(dataDirectory);
+            }
+            if (Files.notExists(dataFile)) {
+                Files.createFile(dataFile);
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 
     public static void loadContactList() {
+        createDirectoryAndFile();
         contacts = new Contacts();
-        contacts.addContact("Bob Bobson", "341-555-4345", "bob.bobby@email.com");
-        contacts.addContact("Judy Erin", "123-555-7537", "juuuuuuudeeeeee@email.com");
+        try {
+            contacts = contacts.fromList(Files.readAllLines(dataFile));
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+//        contacts.addContact("Bob Bobson", "341-555-4345", "bob.bobby@email.com");
+//        contacts.addContact("Judy Erin", "123-555-7537", "juuuuuuudeeeeee@email.com");
     }
 
     public static void saveContactList() {
-
+        try {
+            Files.write(dataFile, contacts.toList());
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     public static void printCLMenu() {
@@ -106,5 +147,7 @@ public class ContactsManagerApplication {
             printCLMenu();
             willContinue = doCLOption(getCLOption());
         } while (willContinue);
+
+        saveContactList();
     }
 }

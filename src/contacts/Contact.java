@@ -11,6 +11,16 @@ public class Contact {
         email = "";
     }
 
+    public Contact(String fileLine) {
+        String[] lineComponents = fileLine.split("@:@");
+        for(String str : lineComponents) {
+            System.out.println(str);
+        }
+        name = lineComponents[0];
+        phoneNumber = lineComponents[1];
+        email = lineComponents[2];
+    }
+
     public Contact(String name, String phoneNumber, String email) {
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -43,5 +53,8 @@ public class Contact {
 
     public void print() {
         System.out.format("%-20s | %12s | %s%n", name, phoneNumber, email);
+    }
+    public String toString() {
+        return name + "@:@" + phoneNumber + "@:@" + email;
     }
 }

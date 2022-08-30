@@ -1,6 +1,7 @@
 package contacts;
 import java.lang.reflect.Array;
 import java.util.*;
+import java.nio.*;
 public class Contacts {
     private ArrayList<Contact> contacts;
 
@@ -72,5 +73,22 @@ public class Contacts {
                 removeContact(getContact(i));
             }
         }
+    }
+
+    public List<String> toList() {
+        List<String> contactsList = new ArrayList<>();
+        for (int i = 0; i < contacts.size(); i++) {
+            contactsList.add(contacts.get(i).toString());
+        }
+        return contactsList;
+    }
+
+    public Contacts fromList(List<String> list) {
+        Contacts contactsList = new Contacts();
+        for(int i = 0; i < list.size(); i++){
+            System.out.println(list.get(i));
+            contactsList.addContact(new Contact(list.get(i)));
+        }
+        return contactsList;
     }
 }
