@@ -88,4 +88,12 @@ public class Input {
         System.out.print(prompt);
         return getDouble();
     }
+
+    public int getBinary(String binaryNum) {
+        return Integer.valueOf(binaryNum, 2);
+    }
+
+    public int getHex(String hexNum) {
+        return Integer.valueOf(hexNum, 16);
+    }
 }
