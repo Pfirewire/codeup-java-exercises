@@ -93,11 +93,23 @@ public class ContactsManagerApplication {
     }
 
     public static void addContact() {
-        contacts.addContact(getUserContact());
+        Contact newContact = getUserContact();
+        if(!contacts.hasContact(newContact.getName())) {
+            contacts.addContact(newContact);
+        } else if (inpt.yesNo(newContact.getName() + " already exists on this list. Would you like to replace them? Y|N: ")){
+            replaceContact(newContact);
+        } else {
+            addContact();
+        }
     }
 
     public static void addContact(String name) {
         contacts.addContact(getUserContact(name));
+    }
+
+    public static void replaceContact(Contact contact) {
+        contacts.removeContact(contact.getName());
+        contacts.addContact(contact);
     }
 
     public static void searchContact() {
@@ -122,13 +134,13 @@ public class ContactsManagerApplication {
 
     public static Contact getUserContact() {
         String name = inpt.getString("Enter name: ");
-        int phoneNumber = inpt.getInt("Enter phone number (xxxxxxx or xxxxxxxxxx format): ");
+        Long phoneNumber = inpt.getPhoneNumber("Enter phone number (xxxxxxx or xxxxxxxxxx format): ");
         String email = inpt.getString("Enter email: ");
         return new Contact(name, phoneNumber, email);
     }
 
     public static Contact getUserContact(String name) {
-        int phoneNumber = inpt.getInt("Enter phone number (xxxxxxx or xxxxxxxxxx format): ");
+        long phoneNumber = inpt.getPhoneNumber("Enter phone number (xxxxxxx or xxxxxxxxxx format): ");
         String email = inpt.getString("Enter email: ");
         return new Contact(name, phoneNumber, email);
     }
@@ -145,7 +157,8 @@ public class ContactsManagerApplication {
             printCLMenu();
             willContinue = doCLOption(getCLOption());
         } while (willContinue);
-
-        saveContactList();
+        if(inpt.yesNo("Would you like to save the changes you made to the Contact List? Y|N: ")) {
+            saveContactList();
+        }
     }
 }

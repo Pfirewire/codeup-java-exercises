@@ -96,4 +96,55 @@ public class Input {
     public int getHex(String hexNum) {
         return Integer.valueOf(hexNum, 16);
     }
+
+    public long getLong(long min, long max) {
+        long userInput = getLong();
+        do {
+            if(userInput >= min && userInput <= max) {
+                return userInput;
+            } else {
+                System.out.printf("Must be between %s and %s. ", min, max);
+                userInput = getLong();
+            }
+        } while(true);
+    }
+
+    public long getLong(long min, long max, String prompt) {
+        System.out.print(prompt);
+        return getLong(min, max);
+    }
+
+    public long getLong() {
+        try{
+            return Long.valueOf(getString());
+        } catch (NumberFormatException e) {
+            System.out.println("Try again");
+            return getLong();
+        }
+    }
+
+    public long getLong(String prompt) {
+        System.out.print(prompt);
+        return getLong();
+    }
+
+    public long getPhoneNumber() {
+        String userValue = getString();
+        if (userValue.length() == 7 || userValue.length() == 10) {
+            try{
+                return Long.valueOf(userValue);
+            } catch (NumberFormatException e) {
+                System.out.println("Try again");
+                return getPhoneNumber();
+            }
+        } else {
+            System.out.println("Invalid phone number, must be either 7 or 10 digits.");
+            return getPhoneNumber("Please enter valid phone number: ");
+        }
+    }
+
+    public long getPhoneNumber(String prompt) {
+        System.out.print(prompt);
+        return getPhoneNumber();
+    }
 }
