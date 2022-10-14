@@ -1,6 +1,18 @@
 import java.util.Scanner;
 
 public class HighLow {
+
+    public static int randomNumber(int min, int max) {
+        return (int) (Math.random() * max) + min;
+    }
+
+    // getGuess
+    public static int getGuess(){
+        Scanner scanner = new Scanner(System.in);
+        scanner.useDelimiter("\n");
+        System.out.print("Please enter your guess: ");
+        return scanner.nextInt();
+    }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
@@ -38,17 +50,5 @@ public class HighLow {
             System.out.print("Would you like to play again? (Y|N): ");
             userContinue = scanner.next();
         } while(userContinue.equals("Y") || userContinue.equals("y"));
-    }
-
-    public static int randomNumber(int min, int max) {
-        return (int) (Math.random() * max) + min;
-    }
-
-    // getGuess
-    public static int getGuess(){
-        Scanner scanner = new Scanner(System.in);
-        scanner.useDelimiter("\n");
-        System.out.print("Please enter your guess: ");
-        return scanner.nextInt();
     }
 }
