@@ -9,14 +9,39 @@ public class HighLow {
         return random.nextInt(max - min + 1) + min;
     }
 
-    // getGuess
     public static int getGuess(){
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
         System.out.print("Please enter your guess: ");
         return scanner.nextInt();
     }
-    public static void main(String[] args) {
+
+    public static boolean checkGuess(int userGuess, int randomNumber) {
+        if (userGuess < randomNumber) {
+            System.out.println("HIGHER");
+            return false;
+        } else if (userGuess > randomNumber) {
+            System.out.println("LOWER");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static void printResult(boolean userIsCorrect, int amountOfGuesses) {
+        if(userIsCorrect) {
+            System.out.println("GOOD GUESS!");
+            if(amountOfGuesses == 1) {
+                System.out.printf("It took you %s guess!%n", amountOfGuesses);
+            } else {
+                System.out.printf("It took you %s guesses!%n", amountOfGuesses);
+            }
+        } else {
+            System.out.println("I'm sorry, you ran out of guesses :(");
+        }
+    }
+
+    public static void highLowGame() {
         Scanner scanner = new Scanner(System.in);
         scanner.useDelimiter("\n");
         String userContinue;
@@ -32,26 +57,15 @@ public class HighLow {
             do {
                 userGuess = getGuess();
                 amountOfGuesses++;
-                if (userGuess < randomNumber) {
-                    System.out.println("HIGHER");
-                } else if (userGuess > randomNumber) {
-                    System.out.println("LOWER");
-                } else {
-                    userIsCorrect = true;
-                }
+                userIsCorrect = checkGuess(userGuess, randomNumber);
             } while (!userIsCorrect && amountOfGuesses < guessLimit);
-            if(userIsCorrect) {
-                System.out.println("GOOD GUESS!");
-                if(amountOfGuesses == 1) {
-                    System.out.printf("It took you %s guess!%n", amountOfGuesses);
-                } else {
-                    System.out.printf("It took you %s guesses!%n", amountOfGuesses);
-                }
-            } else {
-                System.out.println("I'm sorry, you ran out of guesses :(");
-            }
+            printResult(userIsCorrect, amountOfGuesses);
             System.out.print("Would you like to play again? (Y|N): ");
             userContinue = scanner.next();
         } while(userContinue.equals("Y") || userContinue.equals("y"));
+    }
+
+    public static void main(String[] args) {
+        highLowGame();
     }
 }
