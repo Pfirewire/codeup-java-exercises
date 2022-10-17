@@ -1,9 +1,12 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class HighLow {
 
+    private static Random random = new Random();
+
     public static int randomNumber(int min, int max) {
-        return (int) (Math.random() * max) + min;
+        return random.nextInt(max - min + 1) + min;
     }
 
     // getGuess
