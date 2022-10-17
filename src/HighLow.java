@@ -25,7 +25,7 @@ public class HighLow {
             int randomNumber = randomNumber(1, 100);
             int amountOfGuesses = 0;
             int userGuess;
-            System.out.printf("%s%n", randomNumber);
+//            System.out.printf("%s%n", randomNumber);
             do {
                 userGuess = getGuess();
                 amountOfGuesses++;
@@ -37,7 +37,7 @@ public class HighLow {
                     userIsCorrect = true;
                 }
             } while (!userIsCorrect && amountOfGuesses < guessLimit);
-            if(amountOfGuesses <= guessLimit) {
+            if(userIsCorrect) {
                 System.out.println("GOOD GUESS!");
                 if(amountOfGuesses == 1) {
                     System.out.printf("It took you %s guess!%n", amountOfGuesses);
