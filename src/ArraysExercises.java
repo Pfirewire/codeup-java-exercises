@@ -11,7 +11,7 @@ public class ArraysExercises {
         return morePeople;
     }
 
-    public static void main(String[] args) {
+    public static void doExercises() {
         int[] numbers = {1, 2, 3, 4, 5};
         System.out.println(Arrays.toString(numbers));
 
@@ -27,7 +27,10 @@ public class ArraysExercises {
         for(Person person : morePeople) {
             System.out.println(person.getName());
         }
+    }
 
+    public static void main(String[] args) {
+        doExercises();
     }
 
 }
