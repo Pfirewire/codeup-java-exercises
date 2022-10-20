@@ -3,7 +3,7 @@ import util.Input;
 
 public class MoviesApplication {
 
-    public static void main(String[] args) {
+    public static void doExercise() {
         Input inputter = new Input();
         boolean userContinue = true;
         int userChoice;
@@ -24,51 +24,53 @@ public class MoviesApplication {
                     userContinue = false;
                     break;
                 case 1:
-                    for(Movie movie : movieList) {
-                        System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
-                    }
-                    System.out.printf("%n%n");
+                    printMovies(movieList);
                     break;
                 case 2:
-                    for(Movie movie : movieList) {
-                        if(movie.getCategory().equals("animated")){
-                            System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
-                        }
-                    }
-                    System.out.printf("%n%n");
+                    printMovies(movieList, "animated");
                     break;
                 case 3:
-                    for(Movie movie : movieList) {
-                        if(movie.getCategory().equals("drama")){
-                            System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
-                        }
-                    }
-                    System.out.printf("%n%n");
+                    printMovies(movieList, "drama");
                     break;
                 case 4:
-                    for(Movie movie : movieList) {
-                        if(movie.getCategory().equals("horror")){
-                            System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
-                        }
-                    }
-                    System.out.printf("%n%n");
+                    printMovies(movieList, "horror");
                     break;
                 case 5:
-                    for(Movie movie : movieList) {
-                        if(movie.getCategory().equals("scifi")){
-                            System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
-                        }
-                    }
-                    System.out.printf("%n%n");
+                    printMovies(movieList, "scifi");
                     break;
                 case 6:
-                    Movie userMovie = new Movie();
-                    userMovie.setName(inputter.getString("Enter the name of your movie: "));
-                    userMovie.setCategory(inputter.getString("Enter the category of your movie: "));
-                    moviesArray.addMovie(userMovie);
+                    addMovie(moviesArray, inputter);
+                    break;
                 default:
                     break;
             }
         } while(userContinue);
+    }
+
+    public static void printMovies(Movie[] movieList, String category) {
+        for(Movie movie : movieList) {
+            if(movie.getCategory().equals(category)){
+                System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
+            }
+        }
+        System.out.printf("%n%n");
+    }
+
+    public static void printMovies(Movie[] movieList) {
+        for(Movie movie : movieList) {
+            System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
+        }
+        System.out.printf("%n%n");
+    }
+
+    public static void addMovie(MoviesArray moviesArray, Input inputter) {
+        Movie userMovie = new Movie();
+        userMovie.setName(inputter.getString("Enter the name of your movie: "));
+        userMovie.setCategory(inputter.getString("Enter the category of your movie: "));
+        moviesArray.addMovie(userMovie);
+    }
+
+    public static void main(String[] args) {
+        doExercise();
     }
 }
