@@ -50,17 +50,17 @@ public class MoviesApplication {
     public static void printMovies(Movie[] movieList, String category) {
         for(Movie movie : movieList) {
             if(movie.getCategory().equals(category)){
-                System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
+                System.out.printf("%50s -- %s%n", movie.getName(), movie.getCategory());
             }
         }
-        System.out.printf("%n%n");
+        System.out.printf("%n------------------------------------------------------------------------------------------------------------------------%n");
     }
 
     public static void printMovies(Movie[] movieList) {
         for(Movie movie : movieList) {
-            System.out.printf("%s -- %s%n", movie.getName(), movie.getCategory());
+            System.out.printf("%50s -- %s%n", movie.getName(), movie.getCategory());
         }
-        System.out.printf("%n%n");
+        System.out.printf("%n------------------------------------------------------------------------------------------------------------------------%n");
     }
 
     public static void addMovie(MoviesArray moviesArray, Input inputter) {
