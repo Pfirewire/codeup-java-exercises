@@ -2,11 +2,14 @@ package grades;
 import util.Input;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import static java.util.Map.entry;
 
 public class GradesApplication {
 
     public static HashMap<String, Student> populateStudents() {
-        HashMap<String, Student> students = new HashMap<>();
 
         Student failingStudent = new Student("Pat");
         failingStudent.addGrade(12);
@@ -45,12 +48,14 @@ public class GradesApplication {
         allOverStudent.recordAttendance("2020-10-10", "A");
         allOverStudent.recordAttendance("2020-10-11", "A");
 
-        students.put("idontcare", failingStudent);
-        students.put("meh24", averageStudent);
-        students.put("gaming_rainbows", straightAStudent);
-        students.put("alibaba7", allOverStudent);
+        Map<String, Student> immutableStudents = Map.ofEntries(
+                entry("idontcare", failingStudent),
+                entry("meh24", averageStudent),
+                entry("gaming_rainbows", straightAStudent),
+                entry("alibaba7", allOverStudent)
+        );
 
-        return students;
+        return new HashMap<>(immutableStudents);
     }
 
     public static String appOptions() {
