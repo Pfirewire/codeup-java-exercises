@@ -4,8 +4,8 @@ import util.Input;
 import java.util.HashMap;
 
 public class GradesApplication {
-    public static void main(String[] arg) {
-        Input inpt = new Input();
+
+    public static HashMap<String, Student> populateStudents() {
         HashMap<String, Student> students = new HashMap<>();
 
         Student failingStudent = new Student("Pat");
@@ -50,6 +50,21 @@ public class GradesApplication {
         students.put("gaming_rainbows", straightAStudent);
         students.put("alibaba7", allOverStudent);
 
+        return students;
+    }
+
+    public static String appOptions() {
+        return "1. View individual Student\n" +
+                "2. View all grades for all Students\n" +
+                "3. View class grade average\n" +
+                "4. View CSV report for all students\n" +
+                "0. Exit\n\n" +
+                "Enter an option: ";
+    }
+    public static void execute() {
+        Input inpt = new Input();
+        HashMap<String, Student> students = populateStudents();
+
         boolean userContinue = true;
         int userInput;
         String userStringInput;
@@ -57,20 +72,15 @@ public class GradesApplication {
 
         System.out.println("Welcome to my Students class!\n\n");
         do{
-            userInput = inpt.getInt(0, 4, "1. View individual Student\n" +
-                "2. View all grades for all Students\n" +
-                "3. View class grade average\n" +
-                "4. View CSV report for all students\n" +
-                "0. Exit\n\n" +
-                "Enter an option: ");
+            userInput = inpt.getInt(0, 4, appOptions());
             switch (userInput){
                 case 0:
                     userContinue = false;
                     break;
                 case 1:
                     System.out.println("Here are the GitHub usernames of my students: \n");
-                    students.forEach((gitHubName, student) -> {
-                        System.out.printf("|%s| ", gitHubName);
+                    students.forEach((githubName, student) -> {
+                        System.out.printf("|%s| ", githubName);
                     });
                     System.out.println("\n");
                     userStringInput = inpt.getString("Which student would you like to see information on? ");
@@ -108,12 +118,15 @@ public class GradesApplication {
                 case 4:
                     System.out.println("------------------------------------------------\n" +
                             "Name         | GitHub username      | Average");
-                    students.forEach((githubname, student) -> {
-                        System.out.format("%-12s | %-20s | %.1f%n", student.getName(), githubname, student.getGradeAverage());
+                    students.forEach((githubName, student) -> {
+                        System.out.format("%-12s | %-20s | %.1f%n", student.getName(), githubName, student.getGradeAverage());
                     });
                     System.out.println("------------------------------------------------");
                     break;
             }
         } while (userContinue);
+    }
+    public static void main(String[] arg) {
+        execute();
     }
 }
