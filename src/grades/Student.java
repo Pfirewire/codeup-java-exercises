@@ -36,7 +36,13 @@ public class Student {
     public String getAllGrades() {
         String allGrades = "";
         for (int grade : grades) {
-            allGrades = allGrades + grade + " ";
+            if(grade < 10) {
+                allGrades += "  " + grade + " ";
+            } else if (grade < 100) {
+                allGrades += " " + grade + " ";
+            } else {
+                allGrades += grade + " ";
+            }
         }
         return allGrades;
     }

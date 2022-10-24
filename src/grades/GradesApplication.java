@@ -61,6 +61,25 @@ public class GradesApplication {
                 "0. Exit\n\n" +
                 "Enter an option: ";
     }
+
+    public static void printSingleStudentData(Student userStudent, int userInput) {
+        System.out.format(
+                "------------------------------------------------%n" +
+                        "Student Name: %s%n" +
+                        "Student GitHub: %s%n" +
+                        "Student Grade Average: %.1f%%%n" +
+                        "Grades: %s%n" +
+                        "Attendance Percentage: %.1f%%%n" +
+                        "Days Absent: %s%n" +
+                        "------------------------------------------------%n",
+                userStudent.getName(),
+                userInput,
+                userStudent.getGradeAverage(),
+                userStudent.getAllGrades(),
+                userStudent.getAttendancePercentage(),
+                userStudent.getDaysAbsent().toString()
+        );
+    }
     public static void execute() {
         Input inpt = new Input();
         HashMap<String, Student> students = populateStudents();
@@ -88,22 +107,12 @@ public class GradesApplication {
                         System.out.println("\nI couldn't find any students with that GitHub name.\n");
                     } else {
                         userStudent = students.get(userStringInput);
-                        System.out.format("------------------------------------------------%n" +
-                                "Student Name: %s%n" +
-                                "Student GitHub: %s%n" +
-                                "Student Grade Average: %.1f%%%n" +
-                                "Grades: %s%n" +
-                                "Attendance Percentage: %.1f%%%n" +
-                                "Days Absent: %s%n" +
-                                "------------------------------------------------%n", userStudent.getName(), userInput, userStudent.getGradeAverage(), userStudent.getAllGrades(), userStudent.getAttendancePercentage(), userStudent.getDaysAbsent().toString());
+                        printSingleStudentData(userStudent, userInput);
                     }
                     break;
                 case 2:
-                    // hm.forEach((k,v) -> System.out.println("key: "+k+" value:"+v));
                     System.out.println("------------------------------------------------");
-                    students.forEach((githubName, student) -> {
-                        System.out.printf("%s: %s%n", student.getName(), student.getAllGrades());
-                    });
+                    students.forEach((githubName, student) -> System.out.printf("%-12s: %s%n", student.getName(), student.getAllGrades()));
                     System.out.println("------------------------------------------------");
                     break;
                 case 3:
@@ -118,9 +127,7 @@ public class GradesApplication {
                 case 4:
                     System.out.println("------------------------------------------------\n" +
                             "Name         | GitHub username      | Average");
-                    students.forEach((githubName, student) -> {
-                        System.out.format("%-12s | %-20s | %.1f%n", student.getName(), githubName, student.getGradeAverage());
-                    });
+                    students.forEach((githubName, student) -> System.out.format("%-12s | %-20s | %.1f%n", student.getName(), githubName, student.getGradeAverage()));
                     System.out.println("------------------------------------------------");
                     break;
             }
