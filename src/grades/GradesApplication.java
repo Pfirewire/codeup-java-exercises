@@ -97,11 +97,9 @@ public class GradesApplication {
         System.out.println("Welcome to my Students class!\n\n");
         do{
             userInput = inpt.getInt(0, 4, appOptions());
-            switch (userInput){
-                case 0:
-                    userContinue = false;
-                    break;
-                case 1:
+            switch (userInput) {
+                case 0 -> userContinue = false;
+                case 1 -> {
                     System.out.println("Here are the GitHub usernames of my students: \n");
                     students.forEach((githubName, student) -> System.out.printf("|%s| ", githubName));
                     System.out.println("\n");
@@ -112,32 +110,32 @@ public class GradesApplication {
                         userStudent = students.get(userStringInput);
                         printSingleStudentData(userStudent, userInput);
                     }
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     System.out.println("------------------------------------------------");
                     students.forEach((githubName, student) -> System.out.printf("%-12s: %s%n", student.getName(), student.getAllGrades()));
                     System.out.println("------------------------------------------------");
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     double totalClassAverage = 0;
                     System.out.println("------------------------------------------------");
-                    for (Student student : students.values()){
+                    for (Student student : students.values()) {
                         totalClassAverage += student.getGradeAverage();
                     }
                     System.out.format("Total Class Average: %.1f%n", totalClassAverage / (double) students.size());
                     System.out.println("------------------------------------------------");
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     System.out.println("------------------------------------------------\n" +
                             "Name         | GitHub username      | Average");
-                    for(Map.Entry<String, Student> studentEntry : students.entrySet()) {
+                    for (Entry<String, Student> studentEntry : students.entrySet()) {
                         Student student = studentEntry.getValue();
                         String githubName = studentEntry.getKey();
                         System.out.format("%-12s | %-20s | %.1f%n", student.getName(), githubName, student.getGradeAverage());
                     }
 //                    students.forEach((githubName, student) -> System.out.format("%-12s | %-20s | %.1f%n", student.getName(), githubName, student.getGradeAverage()));
                     System.out.println("------------------------------------------------");
-                    break;
+                }
             }
         } while (userContinue);
     }
