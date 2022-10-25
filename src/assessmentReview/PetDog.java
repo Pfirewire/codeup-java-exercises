@@ -1,5 +1,7 @@
 package assessmentReview;
 
+import java.util.ArrayList;
+
 public class PetDog extends Pet implements Companion {
     private Boolean trained;
 
@@ -25,5 +27,13 @@ public class PetDog extends Pet implements Companion {
     @Override
     public String snuggle() {
         return name + " wants to snuggle.";
+    }
+
+    public static ArrayList<String> allSnuggle(ArrayList<PetDog> dogs) {
+        ArrayList<String> snuggleDogs = new ArrayList<>();
+        for(PetDog dog : dogs) {
+            snuggleDogs.add(dog.snuggle());
+        }
+        return snuggleDogs;
     }
 }

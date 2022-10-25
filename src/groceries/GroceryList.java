@@ -83,9 +83,7 @@ public class GroceryList {
     public void printList() {
         sortList();
         System.out.println("------------------------------------------------");
-        groceryList.forEach((category, entryList) -> entryList.forEach((entry) -> {
-            System.out.format("%-20s: %-3d |%s%n", entry.getItem(), entry.getQuantity(), category);
-        }));
+        groceryList.forEach((category, entryList) -> entryList.forEach((entry) -> System.out.format("%-20s: %-3d |%s%n", entry.getItem(), entry.getQuantity(), category)));
         System.out.println("------------------------------------------------");
     }
 

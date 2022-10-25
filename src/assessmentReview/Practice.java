@@ -1,5 +1,7 @@
 package assessmentReview;
 
+import java.util.ArrayList;
+
 public class Practice {
 
     public static int subtractTen(int num) {
@@ -12,6 +14,13 @@ public class Practice {
             total += num;
         }
         return (double) total/nums.length;
+    }
+
+    public static ArrayList<Integer> multiplyAll(int multiplyNum, ArrayList<Integer> nums) {
+        for(int i = 0; i < nums.size(); i++) {
+            nums.set(i, (nums.get(i) * multiplyNum));
+        }
+        return nums;
     }
 
     public static void main(String[] args) {
