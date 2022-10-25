@@ -103,9 +103,7 @@ public class GradesApplication {
                     break;
                 case 1:
                     System.out.println("Here are the GitHub usernames of my students: \n");
-                    students.forEach((githubName, student) -> {
-                        System.out.printf("|%s| ", githubName);
-                    });
+                    students.forEach((githubName, student) -> System.out.printf("|%s| ", githubName));
                     System.out.println("\n");
                     userStringInput = inpt.getString("Which student would you like to see information on? ");
                     if (!students.containsKey(userStringInput)) {
@@ -132,7 +130,12 @@ public class GradesApplication {
                 case 4:
                     System.out.println("------------------------------------------------\n" +
                             "Name         | GitHub username      | Average");
-                    students.forEach((githubName, student) -> System.out.format("%-12s | %-20s | %.1f%n", student.getName(), githubName, student.getGradeAverage()));
+                    for(Map.Entry<String, Student> studentEntry : students.entrySet()) {
+                        Student student = studentEntry.getValue();
+                        String githubName = studentEntry.getKey();
+                        System.out.format("%-12s | %-20s | %.1f%n", student.getName(), githubName, student.getGradeAverage());
+                    }
+//                    students.forEach((githubName, student) -> System.out.format("%-12s | %-20s | %.1f%n", student.getName(), githubName, student.getGradeAverage()));
                     System.out.println("------------------------------------------------");
                     break;
             }
