@@ -59,24 +59,29 @@ public class GradesApplication {
     }
 
     public static String appOptions() {
-        return "1. View individual Student\n" +
-                "2. View all grades for all Students\n" +
-                "3. View class grade average\n" +
-                "4. View CSV report for all students\n" +
-                "0. Exit\n\n" +
-                "Enter an option: ";
+        return """
+                
+                1. View individual Student
+                2. View all grades for all Students
+                3. View class grade average
+                4. View CSV report for all students
+                0. Exit
+                
+                Enter an option: 
+                """;
     }
 
     public static void printSingleStudentData(Student userStudent, int userInput) {
-        System.out.format(
-                "------------------------------------------------%n" +
-                        "Student Name: %s%n" +
-                        "Student GitHub: %s%n" +
-                        "Student Grade Average: %.1f%%%n" +
-                        "Grades: %s%n" +
-                        "Attendance Percentage: %.1f%%%n" +
-                        "Days Absent: %s%n" +
-                        "------------------------------------------------%n",
+        System.out.format("""
+                        ------------------------------------------------
+                        Student Name: %s
+                        Student GitHub: %s
+                        Student Grade Average: %.1f%%
+                        Grades: %s
+                        Attendance Percentage: %.1f%%
+                        Days Absent: %s
+                        ------------------------------------------------
+                        """,
                 userStudent.getName(),
                 userInput,
                 userStudent.getGradeAverage(),
@@ -127,7 +132,8 @@ public class GradesApplication {
                 }
                 case 4 -> {
                     System.out.println("------------------------------------------------\n" +
-                            "Name         | GitHub username      | Average");
+                            "Name         | GitHub username      | Average\n" +
+                            "-------------+----------------------+-----------");
                     for (Entry<String, Student> studentEntry : students.entrySet()) {
                         Student student = studentEntry.getValue();
                         String githubName = studentEntry.getKey();
