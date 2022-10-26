@@ -1,0 +1,29 @@
+What are Java exceptions?
+
+Exceptions are a feature of the Java language to provide a formalized way to do error handling. Exceptions are an instance of one of several different Exception classes, or a class that extends one of the built-in exception classes.
+
+Exceptions generally contain a message that describes what went wrong. We say that an exception is thrown when the application can't perform an operation.
+
+What does it mean to throw an exception?
+
+In Java terminology, creating an exception object and handing it to the runtime system is called throwing an exception. After a method throws an exception, the runtime system leaps into action to try and find someone to handle the exception.
+
+What is the difference between exceptions and errors?
+
+Error refers to an illegal operation performed by the user which results in the abnormal working of the program.
+
+Exceptions in java refer to an unwanted or unexpected event, which occurs during the execution of a program i.e at run time, that disrupts the normal flow of the program’s instructions.
+
+What is the difference between checked and unchecked exceptions?
+
+Unchecked exceptions are mostly exceptions that are built into the Java language, and do not need to be explicitly dealt with.
+
+Checked exceptions must be handled in our code, either with a try-catch, or by declaring them in the method signature with the throws keyword
+
+Is a RuntimeException checked or unchecked?
+
+Unchecked
+
+How can an exception be handled?
+
+With a catch statement
