@@ -11,13 +11,15 @@ public class MoviesApplication {
         Movie[] movieList;
         do{
             movieList = moviesArray.findAll();
-            System.out.println("0 - exit");
-            System.out.println("1 - view all movies");
-            System.out.println("2 - view movies in the animated category");
-            System.out.println("3 - view movies in the drama category");
-            System.out.println("4 - view movies in the horror category");
-            System.out.println("5 - view movies in the scifi category");
-            System.out.println("6 - add a movie to the list\n");
+            System.out.println("""
+                    0 - exit
+                    1 - view all movies
+                    2 - view movies in the animated category
+                    3 - view movies in the drama category
+                    4 - view movies in the horror category
+                    5 - view movies in the scifi category
+                    6 - add a movie to the list
+                    """);
             userChoice = inputter.getInt(0, 6, "Enter your choice: ");
             switch (userChoice) {
                 case 0:
