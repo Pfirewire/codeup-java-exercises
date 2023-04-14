@@ -10,7 +10,7 @@ public class MoviesApplication {
         MoviesArray moviesArray = new MoviesArray();
         Movie[] movieList;
         do{
-            movieList = moviesArray.findAll();
+            movieList = moviesArray.getMovieList();
             System.out.println("""
                     0 - exit
                     1 - view all movies

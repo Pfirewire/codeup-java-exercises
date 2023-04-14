@@ -1,7 +1,7 @@
 package movies;
 
 public class MoviesArray {
-    private static Movie[] movieList;
+    private Movie[] movieList;
 
     public MoviesArray(){
         movieList = new Movie[]{
@@ -112,7 +112,15 @@ public class MoviesArray {
         this.movieList = movieList;
     }
 
-    public static void addMovie(Movie movie) {
+    public Movie[] getMovieList() {
+        return movieList;
+    }
+
+    public void setMovieList(Movie[] movieList) {
+        this.movieList = movieList;
+    }
+
+    public void addMovie(Movie movie) {
         Movie[] newMovieList = new Movie[movieList.length + 1];
         for(int i = 0; i < movieList.length; i++) {
             newMovieList[i] = movieList[i];
@@ -121,7 +129,4 @@ public class MoviesArray {
         movieList = newMovieList;
     }
 
-    public static Movie[] findAll() {
-        return movieList;
-    }
 }
